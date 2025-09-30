@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      background-color: bisque;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      font-size: 20px; 
+    }
+
+    h1 {
+      font-size: 40px;
+      color: darkblue;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: darkblue;
+    }
+
+    h3 {
+      font-size: 22px;
+      color: darkblue;
+    }
+
+   
+    a {
+      color: blue;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 22px;
+    }
+
+    a:hover {
+      color: darkred;
+      text-decoration: underline;
+    }
+
+    .book-cover {
+      width: 200px;
+      margin: 10px;
+      border: 5px solid red;
+      box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    }
+
+    
+    .fly {
+      position: absolute;
+      top: 100px;
+      left: -400px;
+      width: 200px;
+      animation: 8s linear infinite; 
+    }
+
+    @keyframes flyAcross {
+      0%   { left: -400px; top: 100px; }
+      50%  { left: 50%; top: 50px; }
+      100% { left: 110%; top: 120px; }
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 60%;
+      margin-top: 10px;
+      background-color: white;
+      font-size: 18px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dog Man Series</h1>
+    <h3>
+      <a href="https://en.wikipedia.org/wiki/Dav_Pilkey" target="_blank">
+        Dav Pilkey
+      </a>
+    </h3>
+  </header>
+
+  <main>
+    <section>
+      <h2>Synopsis</h2>
+      <p>
+        The Dog Man series is a popular graphic novel collection by Dav Pilkey. 
+        It follows Dog Man, a part-dog, part-human police officer, as he fights crime, 
+        solves mysteries, and brings humor to young readers. 
+        The series combines action, comedy, and heartwarming lessons 
+        about friendship, responsibility, and doing the right thing.
+      </p>
+    </section>
+
+    <section>
+      <h2>Book Images</h2>
+     
+      <img class="book-cover" src="https://m.media-amazon.com/images/I/913ma+NN5LL._UF1000,1000_QL80_.jpg" alt="Dog Man Book Cover 1">
+
+     
+      <img class="fly" src="https://static.wikia.nocookie.net/captainunderpants/images/9/97/Dog_Man_official_render.png/revision/latest/scale-to-width/360?cb=20250126222506" alt="Flying Dog Man">
+    </section>
+  </main>
+
+  <aside>
+    <h2>About the Author</h2>
+    <p>
+      Dav Pilkey is an American author and illustrator best known for creating 
+      the Captain Underpants and Dog Man series. His books are beloved worldwide 
+      for their humor, creativity, and accessibility for young readers. 
+      Pilkey has received numerous awards and continues to inspire kids to love reading.
+    </p>
+  </aside>
+
+  <aside>
+    <h2>Book Details</h2>
+    <table>
+      <tr>
+        <th>ISBN</th>
+        <td>978-1338741032</td>
+      </tr>
+      <tr>
+        <th>Number of Pages</th>
+        <td>240</td>
+      </tr>
+      <tr>
+        <th>Publisher</th>
+        <td>Graphix (Scholastic)</td>
+      </tr>
+      <tr>
+        <th>Published Date</th>
+        <td>August 3, 2021</td>
+      </tr>
+    </table>
+  </aside>
+</body>
+</html>

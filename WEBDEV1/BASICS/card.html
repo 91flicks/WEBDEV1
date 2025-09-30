@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #0f0001;
+      font-size: 36px;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .card {
+      position: relative;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      color: white;
+      width: 400px;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Full background image */
+    .card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Solid text box centered */
+    .card-content {
+      position: relative;
+      z-index: 2;
+      background: #111; /* solid color */
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 80%;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background-color: #fff;
+      color: #111;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .card a:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dream Cars</h1>
+  <div class="cards-container">
+    <div class="card">
+      <img src="https://images.pistonheads.com/nimg/47438/blobid0.jpg" alt="Porsche 911 GT3 RS">
+      <div class="card-content">
+        <div class="card-title">Porsche 911 GT3 RS</div>
+        <div class="card-desc">
+          Track-bred monster with 518 hp, swan-neck wing, and razor-sharp handling. Built for ultimate performance.
+        </div>
+        <a href="https://www.pistonheads.com/news/ph-driven/2023-porsche-911-gt3-rs-992--uk-review/47438" target="_blank">see what you missing out on</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn.dealeraccelerate.com/bagauction/1/295/1755/1920x1440/2019-koenigsegg-regera.webp" alt="Koenigsegg Regera">
+      <div class="card-content">
+        <div class="card-title">Koenigsegg Regera</div>
+        <div class="card-desc">
+          Hybrid hypercar with 1,500 hp. Direct Drive tech, active aero, and unmatched speed + luxury.
+        </div>
+        <a href="https://www.koenigsegg.com/car/regera/" target="_blank">see what you missing out on</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://swiftmedia.s3.amazonaws.com/mountain.swiftcom.com/images/sites/2/2020/07/22233720/Large-8712-McLaren-570S-Spider-1024x682.jpg" alt="McLaren 570S">
+      <div class="card-content">
+        <div class="card-title">McLaren 570S</div>
+        <div class="card-desc">
+          A supercar designed for everyday use. With 562 hp from its twin-turbo V8, it delivers blistering speed with McLaren's race DNA.
+        </div>
+        <a href="https://cars.mclaren.com/en/sports-series/570s" target="_blank">see what you missing out on</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F09%2Fbrabus-900-rocket-edition-mercedes-amg-gle-63-s-twin-turbo-v8-fastest-suv-world-record-1.jpg?q=90&w=1400&cbr=1&fit=max" alt="Brabus GLE 63">
+      <div class="card-content">
+        <div class="card-title">Brabus GLE 63</div>
+        <div class="card-desc">
+          Luxury SUV tuned to 800 hp. Aggressive styling, lavish interior, and insane performance.
+        </div>
+        <a href="https://www.brabus.com/en-int/cars/cars-for-sale/C4S359.html" target="_blank">see what you missing out on</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://anrky.com/wp-content/uploads/elementor/thumbs/ANRKY-Wheels-Lamborghini-Urus-AN30-SeriesTHREE_49101914761_o-pk0yj72r3w1lod2xi1c6ybpcu1e8w20tho74uebqt0.jpg" alt="Lamborghini Urus">
+      <div class="card-content">
+        <div class="card-title">Lamborghini Urus</div>
+        <div class="card-desc">
+          Super-SUV with 650 hp. Striking design, luxury cabin, and Lamborghini DNA in an SUV body.
+        </div>
+        <a href="https://www.lamborghini.com/en-en/models/urus" target="_blank">see what you missing out on</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

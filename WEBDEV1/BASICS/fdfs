@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendsetter - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #6a5acd; /* SlateBlue */
+            --background-color: #f4f5f7;
+            --card-background: #ffffff;
+            --text-color: #172b4d;
+            --subtle-text: #6b778c;
+            --border-color: #dfe1e6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--card-background);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .app-header h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .user-profile .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            background-image: url('https://i.pravatar.cc/40'); /* Placeholder avatar */
+        }
+
+        .main-content {
+            padding: 24px;
+        }
+
+        .generator-section h2 {
+            font-size: 28px;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .generator-section p {
+            text-align: center;
+            color: var(--subtle-text);
+            margin-bottom: 24px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        #product-input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: box-shadow 0.2s;
+        }
+
+        #product-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        #generate-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        #generate-btn:hover {
+            background-color: #5a4ab9;
+        }
+
+        #generate-btn:active {
+            transform: scale(0.98);
+        }
+
+        #generate-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .results-section {
+            margin-top: 32px;
+        }
+
+        #results-container .placeholder {
+            text-align: center;
+            color: var(--subtle-text);
+            padding: 40px;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+        }
+
+        .idea-card {
+            background-color: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .idea-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .trend-badge {
+            background-color: #e9e7fd;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .idea-card-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .idea-card p {
+            color: var(--subtle-text);
+            line-height: 1.6;
+        }
+
+        .idea-card-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .idea-card-actions button {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background-color: transparent;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .idea-card-actions button.primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .idea-card-actions button:hover {
+            background-color: #f4f5f7;
+        }
+
+        .idea-card-actions button.primary:hover {
+            background-color: #5a4ab9;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .loader {
+            text-align: center;
+            padding: 40px;
+            font-weight: 500;
+            color: var(--subtle-text);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Trendsetter ✨</h1>
+            <div class="user-profile">
+                <span>Points: <b id="points-display">35</b></span>
+                <div class="avatar"></div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="generator-section">
+                <h2>Your brand's content, on-trend and on-demand.</h2>
+                <p>Enter your product details to generate fresh post ideas based on real-time TikTok trends.</p>
+                
+                <div class="input-container">
+                    <input type="text" id="product-input" placeholder="e.g., vintage denim jacket, embroidered t-shirt...">
+                    <button id="generate-btn">Generate Idea (-1 Point)</button>
+                </div>
+            </section>
+
+            <section class="results-section">
+                <div id="results-container">
+                    <div class="placeholder">
+                        <p>Your generated content ideas will show up here. Let's create something viral! 🚀</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements ---
+            const generateBtn = document.getElementById('generate-btn');
+            const productInput = document.getElementById('product-input');
+            const resultsContainer = document.getElementById('results-container');
+            const pointsDisplay = document.getElementById('points-display');
+
+            // --- App State ---
+            let currentPoints = 35; // Starting points from the "Pro" plan
+
+            // --- Event Listeners ---
+            generateBtn.addEventListener('click', generateIdeas);
+
+            // --- Functions ---
+            function generateIdeas() {
+                const product = productInput.value.trim();
+                if (!product) {
+                    alert('Please enter a product description!');
+                    return;
+                }
+
+                if (currentPoints <= 0) {
+                    alert('You are out of points! Please upgrade your plan.');
+                    return;
+                }
+
+                // 1. Deduct points and update UI
+                currentPoints -= 1;
+                updatePoints();
+                
+                // 2. Disable button and show loading state
+                toggleLoadingState(true);
+
+                // 3. Simulate API call to the AI backend (2 seconds)
+                setTimeout(() => {
+                    // 4. Get mock data and display it
+                    const ideas = getMockIdeas(product);
+                    displayIdeas(ideas);
+
+                    // 5. Re-enable button and clear loading state
+                    toggleLoadingState(false);
+                    productInput.value = ''; // Clear input for next use
+                }, 2000);
+            }
+
+            function updatePoints() {
+                pointsDisplay.textContent = currentPoints;
+            }
+
+            function toggleLoadingState(isLoading) {
+                if (isLoading) {
+                    generateBtn.disabled = true;
+                    generateBtn.textContent = 'Generating...';
+                    resultsContainer.innerHTML = `<div class="loader">🧠 Analyzing trends for you...</div>`;
+                } else {
+                    generateBtn.disabled = false;
+                    generateBtn.textContent = 'Generate Idea (-1 Point)';
+                }
+            }
+
+            function displayIdeas(ideas) {
+                // Clear previous results or placeholder
+                resultsContainer.innerHTML = '';
+                
+                ideas.forEach(idea => {
+                    const card = document.createElement('div');
+                    card.className = 'idea-card';
+                    card.innerHTML = `
+                        <div class="idea-card-header">
+                            <span class="trend-badge">${idea.trendType}</span>
+                            <h3>${idea.title}</h3>
+                        </div>
+                        <p>${idea.description}</p>
+                        <div class="idea-card-actions">
+                            <button class="primary">Generate Video with VEO3 (-5)</button>
+                            <button>Use Template (-2)</button>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(card);
+                });
+            }
+
+            /**
+             * This function simulates the real AI backend.
+             * In a real app, this would be an API call that returns dynamic, real-time ideas.
+             */
+            function getMockIdeas(product) {
+                return [
+                    {
+                        trendType: 'Montage',
+                        title: `Quick-Cut Style Showcase`,
+                        description: `Create a fast-paced montage of different people wearing the "${product}" in various settings (city, park, café). Use the trending fast-paced audio to keep engagement high.`
+                    },
+                    {
+                        trendType: 'GRWM',
+                        title: `Get Ready With Me: Weekend Edition`,
+                        description: `Film a "Get Ready With Me" video where the creator builds an entire outfit around your "${product}", explaining why it's the perfect centerpiece for their weekend look.`
+                    },
+                    {
+                        trendType: 'Subculture Content',
+                        title: `#ThriftTok Transformation`,
+                        description: `Showcase the versatility of your "${product}" in a video tailored for the #ThriftTok or #Streetwear community. Highlight unique details and styling options that appeal to that niche.`
+                    }
+                ];
+            }
+        });
+    </script>
+</body>
+</html>

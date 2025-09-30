@@ -1,0 +1,304 @@
+import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Search,
+  ExternalLink,
+  Gauge,
+  Sparkles,
+  DollarSign,
+  Calendar,
+  Car,
+} from "lucide-react";
+
+// ---------- Sample Inventory ----------
+const INVENTORY = [
+  {
+    id: 1,
+    make: "Ferrari",
+    model: "SF90 Stradale",
+    year: 2023,
+    horsepower: 986,
+    drivetrain: "AWD",
+    price: 625000,
+    image:
+      "https://images.unsplash.com/photo-1606661391655-4a9343a8fb85?q=80&w=1600&auto=format&fit=crop",
+    listingUrl: "https://www.autotrader.com/cars-for-sale/ferrari-sf90",
+  },
+  {
+    id: 2,
+    make: "Lamborghini",
+    model: "Huracán STO",
+    year: 2022,
+    horsepower: 631,
+    drivetrain: "RWD",
+    price: 390000,
+    image:
+      "https://images.unsplash.com/photo-1602080858428-57174f94368d?q=80&w=1600&auto=format&fit=crop",
+    listingUrl: "https://www.autotrader.com/cars-for-sale/lamborghini-huracan",
+  },
+  {
+    id: 3,
+    make: "McLaren",
+    model: "765LT",
+    year: 2021,
+    horsepower: 755,
+    drivetrain: "RWD",
+    price: 520000,
+    image:
+      "https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=1600&auto=format&fit=crop",
+    listingUrl: "https://www.autotrader.com/cars-for-sale/mclaren-765lt",
+  },
+  {
+    id: 4,
+    make: "Porsche",
+    model: "911 GT3 RS",
+    year: 2024,
+    horsepower: 518,
+    drivetrain: "RWD",
+    price: 345000,
+    image:
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1600&auto=format&fit=crop",
+    listingUrl: "https://www.autotrader.com/cars-for-sale/porsche-911-gt3-rs",
+  },
+  {
+    id: 5,
+    make: "Bugatti",
+    model: "Chiron Super Sport",
+    year: 2021,
+    horsepower: 1578,
+    drivetrain: "AWD",
+    price: 3900000,
+    image:
+      "https://images.unsplash.com/photo-1618506469810-79f685e8a549?q=80&w=1600&auto=format&fit=crop",
+    listingUrl: "https://www.dupontregistry.com/autos/cars/bugatti/chiron",
+  },
+];
+
+const MAKES = ["All", ...Array.from(new Set(INVENTORY.map((c) => c.make)))];
+
+function formatCurrency(n: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(n);
+}
+
+function Stat({ icon: Icon, label, value }: any) {
+  return (
+    <div className="flex items-center gap-2 text-sm text-gray-500">
+      <Icon className="h-4 w-4" />
+      <span className="font-medium text-gray-900">{label}:</span>
+      <span>{value}</span>
+    </div>
+  );
+}
+
+function CarCard({ car }: any) {
+  return (
+    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+      <div className="overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-shadow bg-white">
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <img
+            alt={`${car.make} ${car.model}`}
+            src={car.image}
+            className="h-full w-full object-cover hover:scale-105 transition-transform"
+            loading="lazy"
+          />
+          <span className="absolute left-3 top-3 backdrop-blur bg-white/70 text-gray-900 px-2 py-1 rounded">
+            {car.drivetrain}
+          </span>
+          <div className="absolute right-3 bottom-3 rounded-full bg-white/85 px-3 py-1 text-sm font-semibold">
+            {formatCurrency(car.price)}
+          </div>
+        </div>
+        <div className="px-4 py-2">
+          <h3 className="text-lg font-semibold">
+            {car.make} {car.model}
+          </h3>
+        </div>
+        <div className="grid grid-cols-2 gap-3 px-4 pb-2">
+          <Stat icon={Calendar} label="Year" value={car.year} />
+          <Stat icon={Gauge} label="HP" value={car.horsepower.toLocaleString()} />
+        </div>
+        <div className="flex items-center justify-between px-4 pb-4">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <Sparkles className="h-4 w-4" /> Supercar
+          </div>
+          <a
+            href={car.listingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 rounded-full bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700 transition"
+          >
+            View Listing <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function App() {
+  const [query, setQuery] = useState("");
+  const [make, setMake] = useState("All");
+  const [maxPrice, setMaxPrice] = useState(4000000);
+  const [sort, setSort] = useState("relevance");
+
+  const cars = useMemo(() => {
+    let rows = [...INVENTORY];
+
+    const q = query.trim().toLowerCase();
+    if (q) {
+      rows = rows.filter((r) => `${r.make} ${r.model}`.toLowerCase().includes(q));
+    }
+    if (make !== "All") rows = rows.filter((r) => r.make === make);
+    rows = rows.filter((r) => r.price <= maxPrice);
+
+    switch (sort) {
+      case "price-asc":
+        rows.sort((a, b) => a.price - b.price);
+        break;
+      case "price-desc":
+        rows.sort((a, b) => b.price - a.price);
+        break;
+      case "hp-desc":
+        rows.sort((a, b) => b.horsepower - a.horsepower);
+        break;
+      case "year-desc":
+        rows.sort((a, b) => b.year - a.year);
+        break;
+    }
+    return rows;
+  }, [query, make, maxPrice, sort]);
+
+  const priceMarks = [100000, 250000, 500000, 1000000, 2000000, 3000000, 4000000];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Header */}
+      <header className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2">
+            <Car className="h-6 w-6" />
+            <span className="text-lg font-semibold">Supercar Market</span>
+          </div>
+          <div className="hidden text-sm text-gray-500 md:block">
+            Curated listings from premium marketplaces
+          </div>
+        </div>
+      </header>
+
+      {/* Controls */}
+      <section className="mx-auto max-w-7xl px-4 py-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+          <div className="md:col-span-2 relative">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search make or model"
+              className="w-full rounded border border-gray-300 px-9 py-2"
+            />
+          </div>
+
+          <select
+            value={make}
+            onChange={(e) => setMake(e.target.value)}
+            className="w-full rounded border border-gray-300 px-3 py-2"
+          >
+            {MAKES.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="w-full rounded border border-gray-300 px-3 py-2"
+          >
+            <option value="relevance">Relevance</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+            <option value="hp-desc">Horsepower ↓</option>
+            <option value="year-desc">Year ↓</option>
+          </select>
+        </div>
+
+        {/* Price slider */}
+        <div className="mt-5 rounded-2xl border bg-white p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm">
+              <DollarSign className="h-4 w-4 text-gray-400" />
+              Max Price
+            </div>
+            <div className="text-sm text-gray-500">{formatCurrency(maxPrice)}</div>
+          </div>
+          <input
+            type="range"
+            min={100000}
+            max={4000000}
+            step={5000}
+            value={maxPrice}
+            onChange={(e) => setMaxPrice(Number(e.target.value))}
+            className="w-full mt-3"
+          />
+          <div className="mt-2 flex justify-between text-[11px] text-gray-400">
+            {priceMarks.map((m) => (
+              <span key={m}>{m >= 1000000 ? `${m / 1000000}M` : `${m / 1000}k`}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="border-t" />
+
+      {/* Results */}
+      <main className="mx-auto max-w-7xl px-4 py-8">
+        <h2 className="mb-6 text-xl font-semibold">
+          {cars.length} {cars.length === 1 ? "result" : "results"}
+        </h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {cars.map((car) => (
+            <CarCard key={car.id} car={car} />
+          ))}
+        </div>
+
+        {/* Snapshot */}
+        <div className="mt-12 rounded-2xl border bg-white p-6">
+          <h3 className="mb-4 text-lg font-semibold">Market Snapshot</h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div className="rounded-xl border p-4">
+              <div className="text-sm text-gray-500">Average Price</div>
+              <div className="text-2xl font-bold">
+                {formatCurrency(
+                  Math.round(cars.reduce((s, c) => s + c.price, 0) / Math.max(cars.length, 1))
+                )}
+              </div>
+            </div>
+            <div className="rounded-xl border p-4">
+              <div className="text-sm text-gray-500">Strongest HP</div>
+              <div className="text-2xl font-bold">
+                {cars.reduce((m, c) => Math.max(m, c.horsepower), 0).toLocaleString()} hp
+              </div>
+            </div>
+            <div className="rounded-xl border p-4">
+              <div className="text-sm text-gray-500">Newest Model Year</div>
+              <div className="text-2xl font-bold">
+                {cars.reduce((m, c) => Math.max(m, c.year), 0) || "—"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer className="mt-16 border-t">
+        <div className="mx-auto max-w-7xl px-4 py-8 text-sm text-gray-500">
+          © {new Date().getFullYear()} Supercar Market · Demo site. Listings link to external marketplaces.
+        </div>
+      </footer>
+    </div>
+  );
+}
