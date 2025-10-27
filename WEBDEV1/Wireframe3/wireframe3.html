@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe4</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #8d8b8b;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background-color: #444444;
+    }
+
+    header nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #dedede;
+      font-size: 14px;
+    }
+
+    header .logo img {
+      height: 40px;
+      align-items: center;
+    }
+
+    .hero {
+      background-color: #fcfcfc;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    .hero .btn {
+      background-color: #222;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+
+    .hero img {
+      width: 60%;
+      max-width: 700px;
+      border-radius: 4px;
+    }
+
+    .features {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 40px;
+      background-color: hsl(0, 0%, 16%);
+    }
+
+    .features-text {
+      flex: 1;
+      max-width: 45%;
+    }
+
+    .features-text h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .features-text p {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+
+    .features-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 45%;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .feature-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+      }
+      .features-text, .features-list {
+        max-width: 100%;
+      }
+      .hero img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#">Performance</a>
+      <a href="#">Design</a>
+      <a href="#">Technology</a>
+      <a href="#">Experience</a>
+    </nav>
+    <div class="logo">
+      <img src="img/logo.png">
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Koenigsegg Sadair</h1>
+    <p>The Koenigsegg Sadair is the next evolution of hypercar innovation — a blend of breathtaking speed, sustainable power, and aerodynamic elegance. Experience a new dimension of motion and design inspired by the skies.</p>
+    <button class="btn">Get Started</button>
+    <img src="img/koenigsegg-jesko-absolut-02-66830adba45b0.jpg" alt="Koenigsegg Sadair Hero">
+  </section>
+
+  <section class="features">
+    <div class="features-text">
+      <h2>Unleashing the Future of Speed</h2>
+      <p>The Sadair combines revolutionary aerodynamics, hybrid-electric innovation, and an advanced lightweight structure to redefine what’s possible on both road and track.</p>
+      <a href="#">Learn More →</a>
+    </div>
+    <div class="features-list">
+      <div class="feature-item">
+        <img src="img/batmankoenigsegg.avif" alt="Performance">
+        <p>Unmatched acceleration and control powered by Koenigsegg’s proprietary hybrid system.</p>
+      </div>
+      <div class="feature-item">
+        <img src="img/2026-Koenigsegg-Sadairs_Spear_f59bf85a-b3ba-4eae-9d86-5f03eb378f1f.webp" alt="Design">
+        <p>Crafted with precision, the Sadair’s silhouette reflects aerodynamic perfection and Swedish artistry.</p>
+      </div>
+      <div class="feature-item">
+         <img src="img/kone.jpg">
+        <p>Cutting-edge technology delivering intelligent power distribution and seamless driving experience.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
