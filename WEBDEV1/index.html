@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Becks Homepage</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      background-color: #004aad;
+      color: white;
+      padding: 2rem 1rem;
+    }
+
+    nav {
+      background: #222;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0.5rem 1rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      width: 90%;
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+
+    section {
+      margin-bottom: 2rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .alt-section {
+      background: #e0eaff;
+    }
+
+    article {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1rem;
+    }
+
+    article h3 {
+      color: #004aad;
+    }
+
+    article a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #004aad;
+    }
+
+    article a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+
+      main {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Becks Homepage</h1>
+    <p>This homepage showcases all of my projects fronm this semester.</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#class-projects">Class Projects</a></li>
+      <li><a href="#frontend-mentor">FrontendMentor Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="class-projects">
+      <h2>Class Projects</h2>
+
+      <article>
+        <h3>Vacation Page</h3>
+        <p>Vacation webpage of my favorite destination</p>
+        <a href="WEBDEV1/WEBDEV1/Vacation" target="_blank">See it now</a>
+      </article>
+
+      <article>
+        <h3>My Perfect Food Layout</h3>
+        <p>one of my first showcases of different sections</p>
+        <a href="WEBDEV1/WEBDEV1/BASICS/perfect food.html" target="_blank">See it now</a>
+      </article>
+
+      <article>
+        <h3>Flexbox Practice</h3>
+        <p>Learned flexible layouts using Flexbox.</p>
+        <a href="WEBDEV1/WEBDEV1/BASICS/flexbox.html" target="_blank">See it now</a>
+      </article>
+    </section>
+
+    <section id="frontend-mentor" class="alt-section">
+      <h2>FrontendMentor Projects</h2>
+
+      <article>
+        <h3>Social Links Page</h3>
+        <a href="WEBDEV1/WEBDEV1/FrontendMentor/social-links-profile-main target=">See it now</a>
+      </article>
+
+      <article>
+        <h3>Product Preview Card</h3>
+        <p> preview cars page</p>
+        <a href="WEBDEV1/WEBDEV1/FrontendMentor/three column layout/index.html" target="_blank">See it now</a>
+      </article>
+
+       <article>
+        <h3>3 Collumn Layout</h3>
+        <p>first porjoect showcasing 3 collumn layouts</p>
+        <a href="WEBDEV1/WEBDEV1/FrontendMentor/three column layout" target="_blank">See it now</a>
+      </article>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <p>&copy; 2025 Beck</p>
+    <p>Contact: <a href="beck.brust@cougarmail.email">My Email</a></p>
+  </footer>
+</body>
+</html>
